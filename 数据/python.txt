@@ -1,0 +1,12 @@
+﻿181001 python 96
+181002 python 64
+181003 python 89
+181004 python 75
+181005 python 84
+181006 python 80
+181007 python 76
+181008 python 83
+181009 python 86
+181010 python 70
+181011 python 89
+181012 python 91

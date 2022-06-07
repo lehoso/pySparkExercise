@@ -1,0 +1,9 @@
+hadoop is good
+spark is fast
+spark is better
+Python is basics
+Java also good
+hbase is nosql
+mysql is relational database
+mongodb is nosql
+relational database or nosql is good
