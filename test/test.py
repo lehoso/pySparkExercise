@@ -5,16 +5,15 @@ Version:  V 0.1
 File:     test.py
 Describe: Write during the junior at CQUCC, Github link: https://github.com/lehoso
 """
-import random
+from pyspark import *
 
-
-def random_int_list(start, stop, length):
-    start, stop = (int(start), int(stop)) if start <= stop else (int(stop), int(start))
-    length = int(abs(length)) if length else 0
-    random_list = []
-    for i in range(length):
-        random_list.append(random.randint(start, stop))
-    return random_list
-
-
-print(random_int_list(1, 20, 10))
+sc = SparkContext()
+# 1、求图书的平均销量
+# 现有一组键值对（“spark”，2），（“hadoop”，6），（“hadoop”，4），（“spark”，6），
+# 键值对的key表示图书名称，value表示某天的图书销量，现在需要计算每个键对应的平均值，
+# 也就是计算每种图书的平均销量
+rdd = sc.parallelize([("spark", 2), ("hadoop", 6), ("hadoop", 4), ("spark", 6)])
+avg = rdd.mapValues(lambda x: (x, 1)) \
+    .reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1])) \
+    .mapValues(lambda x: x[0] / x[1]).collect()
+print(avg)
